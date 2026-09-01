@@ -2,12 +2,13 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ActividadRequest, ActividadResponse } from '../models/actividad.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ActividadService {
 
   private readonly http = inject(HttpClient);
-  private readonly base = 'http://localhost:8181/api';
+  private readonly base = `${environment.apiUrl}/api`;
 
   registrar(request: ActividadRequest, portada?: File): Observable<ActividadResponse> {
     const formData = new FormData();

@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ActualizarActividadRequest, SolicitudActividad } from '../models/actividad.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ActividadService {
 
-  private readonly api = 'http://localhost:8181/api/actividades';
+  private readonly api = `${environment.apiUrl}/api/actividades`;
 
   constructor(private http: HttpClient) {}
 

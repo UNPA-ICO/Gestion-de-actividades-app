@@ -8,12 +8,13 @@ import {
   InscripcionExternoResponse,
   InscripcionExternoEstado
 } from '../models/inscripcion-externo.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class InscripcionExternoService {
 
   private readonly http = inject(HttpClient);
-  private readonly base = 'http://localhost:8181/api/inscripciones/externo';
+  private readonly base = `${environment.apiUrl}/api/inscripciones/externo`;
 
   // withCredentials es CRITICO: la cookie visitante_id debe viajar en cada peticion
   private readonly opciones = { withCredentials: true };

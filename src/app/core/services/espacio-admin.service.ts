@@ -5,12 +5,13 @@ import {
   MapaPunto, EspacioDetalle,
   EspacioRequest, EspacioEstadoRequest
 } from '../models/espacio-admin.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class EspacioAdminService {
 
   private readonly http = inject(HttpClient);
-  private readonly base = 'http://localhost:8181/api/admin';
+  private readonly base = `${environment.apiUrl}/api/admin`;
 
   // Lista de puntos del mapa con info del espacio (si tiene)
   listarPuntos(): Observable<MapaPunto[]> {

@@ -8,12 +8,13 @@ import {
   UsuarioEstadoRequest,
   Rol,
 } from '../models/usuario.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UsuarioService {
 
   private readonly http = inject(HttpClient);
-  private readonly base = 'http://localhost:8181/api/admin/usuarios';
+  private readonly base = `${environment.apiUrl}/api/admin/usuarios`;
 
   /** US-01: Listar con filtros opcionales */
   listar(filtros: { rol?: Rol; activo?: boolean; q?: string } = {}): Observable<UsuarioResponse[]> {

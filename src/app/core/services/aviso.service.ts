@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Aviso, AvisoRequest } from '../models/aviso.model';
+import { environment } from '../../../environments/environment';
 
 /**
  * Service privado del profesor para gestionar sus avisos (US-17/US-19).
@@ -11,7 +12,7 @@ import { Aviso, AvisoRequest } from '../models/aviso.model';
 export class AvisoService {
 
   private readonly http = inject(HttpClient);
-  private readonly base = 'http://localhost:8181/api/avisos';
+  private readonly base = `${environment.apiUrl}/api/avisos`;
 
   /** US-19: Lista de avisos del profesor para gestionarlos */
   misAvisos(idProfesor: number): Observable<Aviso[]> {

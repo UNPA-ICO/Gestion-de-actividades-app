@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface RecordatorioProgreso {
   enviados: number;
@@ -15,7 +16,7 @@ export interface RecordatorioProgreso {
 @Injectable({ providedIn: 'root' })
 export class RecordatorioService {
 
-  private readonly base = 'http://localhost:8181/api/actividades';
+  private readonly base = `${environment.apiUrl}/api/actividades`;
 
   enviarRecordatorios(idActividad: number, idUsuario: number, token: string): Observable<RecordatorioProgreso> {
     return new Observable(observer => {

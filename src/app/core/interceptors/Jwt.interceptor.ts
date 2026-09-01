@@ -1,6 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { SesionService } from '../services/sesion.service';
+import { environment } from '../../../environments/environment';
 
 /**
  * US-00: Interceptor JWT.
@@ -12,8 +13,9 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   const sesion  = inject(SesionService);
   const usuario = sesion.usuario();
 
-  // Solo inyectar si hay token y la petición va al backend
-  if (usuario?.token && req.url.includes('localhost:8181')) {
+  // Solo inyectar si hay token y la petición va al backend (environment.apiUrl),
+  // sin importar el dominio en el que corra la app.
+  if (usuario?.token && req.url.startsWith(environment.apiUrl)) {
     const reqConToken = req.clone({
       setHeaders: { Authorization: `Bearer ${usuario.token}` }
     });

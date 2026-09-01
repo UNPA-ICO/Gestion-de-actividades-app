@@ -6,12 +6,13 @@ import {
   Carrera, EspacioRecurso, MobiliarioRecurso,
   Campus
 } from '../models/catalogo.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CatalogoService {
 
   private readonly http = inject(HttpClient);
-  private readonly base = 'http://localhost:8181/api';
+  private readonly base = `${environment.apiUrl}/api`;
 
   getCategorias(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(`${this.base}/categorias`);

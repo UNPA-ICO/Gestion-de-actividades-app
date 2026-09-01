@@ -3,10 +3,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ActividadDetallePublica, ActividadPublica } from '../models/actividad.model';
 import { Categoria } from '../models/catalogo.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ActividadService {
-  private base = 'http://localhost:8181/api/calendario';
+  private base = `${environment.apiUrl}/api/calendario`;
 
   constructor(private http: HttpClient) {}
 

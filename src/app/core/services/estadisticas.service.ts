@@ -6,12 +6,13 @@ import {
   EstadisticaCampus,
   EstadisticaCarrera
 } from '../models/estadisticas.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class EstadisticasService {
 
   private readonly http = inject(HttpClient);
-  private readonly base = 'http://localhost:8181/api/admin/estadisticas';
+  private readonly base = `${environment.apiUrl}/api/admin/estadisticas`;
 
   /** US-21: total general por mes y año */
   obtenerGeneral(): Observable<EstadisticaMes[]> {

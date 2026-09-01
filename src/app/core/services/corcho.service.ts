@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Aviso } from '../models/aviso.model';
+import { environment } from '../../../environments/environment';
 
 /**
  * Consumo del corcho publico (US-18/US-20).
@@ -11,7 +12,7 @@ import { Aviso } from '../models/aviso.model';
 export class CorchoService {
 
   private readonly http = inject(HttpClient);
-  private readonly base = 'http://localhost:8181/api/corcho';
+  private readonly base = `${environment.apiUrl}/api/corcho`;
 
   /**
    * Lista publica de avisos.

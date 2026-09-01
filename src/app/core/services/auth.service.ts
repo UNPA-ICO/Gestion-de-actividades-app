@@ -8,13 +8,14 @@ import {
   RestablecerContrasenaRequest
 } from '../models/auth.model';
 import { SesionService } from './sesion.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
   private readonly http    = inject(HttpClient);
   private readonly sesion  = inject(SesionService);
-  private readonly base    = 'http://localhost:8181/api/auth';
+  private readonly base    = `${environment.apiUrl}/api/auth`;
 
   /** Login unificado: matricula o correo */
   login(request: LoginRequest): Observable<LoginResponse> {

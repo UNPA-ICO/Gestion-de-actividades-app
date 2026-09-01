@@ -2,12 +2,13 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { InmobiliarioRequest, InmobiliarioResponse } from '../models/inmobiliario.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class InmobiliarioService {
 
   private readonly http = inject(HttpClient);
-  private readonly base = 'http://localhost:8181/api/admin/inmobiliario';
+  private readonly base = `${environment.apiUrl}/api/admin/inmobiliario`;
 
   /** US-14: Listar todo el inmobiliario activo (con búsqueda opcional) */
   listar(nombre?: string): Observable<InmobiliarioResponse[]> {

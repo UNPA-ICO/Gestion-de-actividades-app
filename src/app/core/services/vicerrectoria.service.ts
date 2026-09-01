@@ -5,12 +5,13 @@ import {
   SolicitudListItem, SolicitudDetalle, SolicitudDecidida,
   AprobarRequest, RechazarRequest, FiltrosSolicitudes
 } from '../models/vicerrectoria.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class VicerrectoriaService {
 
   private readonly http = inject(HttpClient);
-  private readonly base = 'http://localhost:8181/api/vicerrectoria/solicitudes';
+  private readonly base = `${environment.apiUrl}/api/vicerrectoria/solicitudes`;
 
   listar(filtros: FiltrosSolicitudes = {}): Observable<SolicitudListItem[]> {
     let params = new HttpParams();

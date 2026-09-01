@@ -3,12 +3,13 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { InscripcionEstado, InscripcionRequest, InscripcionResponse } from '../models/inscripcion.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class InscripcionService {
 
   private readonly http = inject(HttpClient);
-  private readonly base = 'http://localhost:8181/api/inscripciones';
+  private readonly base = `${environment.apiUrl}/api/inscripciones`;
 
   inscribir(idActividad: number, body: InscripcionRequest): Observable<InscripcionEstado> {
     return this.http.post<InscripcionEstado>(`${this.base}/${idActividad}`, body);

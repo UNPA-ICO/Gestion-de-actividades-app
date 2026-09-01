@@ -2,12 +2,13 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ActividadInscripcionResumen, ListaInscritosResponse } from '../models/inscrito.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class InscritosService {
 
   private readonly http = inject(HttpClient);
-  private readonly base = 'http://localhost:8181/api/actividades';
+  private readonly base = `${environment.apiUrl}/api/actividades`;
 
   /** US-28: lista de inscritos de una actividad (profesor dueño o admin). */
   obtenerLista(idActividad: number): Observable<ListaInscritosResponse> {
