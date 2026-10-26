@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { CalendarioComponent } from './features/calendario_actividades/calendario.component';
+import { CalendarioComponent } from './features/calendario-actividades/calendario.component';
 import { authGuard, profesorGuard, adminGuard } from './core/guards/auth.guard';
 import { InscritosActividadComponent } from './features/actividades/inscritos-actividad/inscritos-actividad.component';
 

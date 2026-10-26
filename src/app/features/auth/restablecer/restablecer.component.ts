@@ -47,10 +47,12 @@ export class RestablecerComponent implements OnInit {
       return;
     }
 
-    // Verificar token antes de mostrar el formulario
+    // Verificar token antes de mostrar el formulario.
+    // Si el backend responde 200, el token es valido (si no lo fuera,
+    // el endpoint lanza un error y cae en el callback de abajo).
     this.auth.verificarToken(this.token).subscribe({
-      next: ({ valido }) => {
-        this.tokenInvalido = !valido;
+      next: () => {
+        this.tokenInvalido = false;
         this.verificando   = false;
       },
       error: () => {

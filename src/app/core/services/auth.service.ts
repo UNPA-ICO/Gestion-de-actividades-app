@@ -1,3 +1,4 @@
+import { environment } from '../../../environments/environment';
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
@@ -8,7 +9,6 @@ import {
   RestablecerContrasenaRequest
 } from '../models/auth.model';
 import { SesionService } from './sesion.service';
-import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -36,9 +36,11 @@ export class AuthService {
     return this.http.post<RecuperacionResponse>(`${this.base}/recuperar`, request);
   }
 
-  /** Verificar si un token sigue siendo valido */
-  verificarToken(token: string): Observable<{ valido: boolean }> {
-    return this.http.get<{ valido: boolean }>(`${this.base}/verificar-token/${token}`);
+  /** Verificar si un token sigue siendo valido.
+   *  El backend responde 200 con {mensaje} si es valido,
+   *  o lanza error (4xx) si expiro / ya fue usado / no existe. */
+  verificarToken(token: string): Observable<{ mensaje: string }> {
+    return this.http.get<{ mensaje: string }>(`${this.base}/verificar-token/${token}`);
   }
 
   /** Restablecer contrasena con token */
